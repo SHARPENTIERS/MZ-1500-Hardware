@@ -1,0 +1,376 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>MZ-700 I/O</title>
+
+<style type="text/css">
+table {  
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 640px; 
+    border-collapse: 
+    collapse; border-spacing: 0; 
+}
+
+td, th {  
+    border: 1px solid ; /* No more visible border */
+    height: 30px; 
+    transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+th {  
+    background: #DFDFDF;  /* Darken header a bit */
+    font-weight: bold;
+}
+
+td {  
+    background: #FAFAFA;
+    text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */        
+tr:nth-child(even) td { background: #F1F1F1; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */        
+tr:nth-child(odd) td { background: #FEFEFE; }  
+
+/* tr td:hover { background: #666; color: #FFF; } */  
+/* Hover cell effect! */
+</style>
+<body>
+
+<a name="VRAM"><h3>VRAM</h3></a>
+<table border="1" cellpadding="2">
+<tbody><tr><th>Address</th><th>R/W</th><th>Description</th></tr>
+
+<tr><td align="center">D000h<br>：<br>D3FFh</td><td align="center">R/W</td>
+<td>Text VRAM<br><img src="./vramarray.png" width="256" height="120">
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Function</th><td colspan="8">Display code</td></tr>
+ </tbody></table>
+ <small><br></small>
+ Specifies the display code of the character to be displayed
+</td>
+</tr>
+
+<tr><td align="center">D400h<br>：<br>D7FFh</td><td align="center">R/W</td>
+<td>PCG VRAM 1 (MZ-1500)
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#E0E0E0">Function</th><td colspan="8">PCGN[7:0]</td></tr>
+ </tbody></table>
+ <small><br></small>
+ Specify PCG number together with PCG VRAM 2
+</td>
+</tr>
+
+<tr><td align="center">D800h<br>：<br>DBFFh</td><td align="center">R/W</td>
+<td>Attribute VRAM
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Function</th><td>ATB</td><td colspan="3">FC</td><td><br></td><td colspan="3">BC</td></tr>
+ </tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+ <tbody><tr><th align="left">ATB</th><td>Character set switching</td><td>0: Set 0 (English capital letter / Katakana)<br>1: Set 1 (English lowercase letters / Hiragana)</td></tr>
+ <tr><th align="left">FC</th><td>Foreground color</td>
+  <td rowspan="2"><table border="1" cellspacing="0" cellpadding="2">
+   <tbody><tr bgcolor="#FFFFCC"><th>FC,BC</th><th>Color</th><th>FC,BC</th><th>Color</th></tr>
+   <tr><th>000</th><td><font color="#000000">■</font>black</td>      <th>100</th><td><font color="#00FF00">■</font>Green</td></tr>
+   <tr><th>001</th><td><font color="#0000FF">■</font>Blue</td>      <th>101</th><td><font color="#00FFFF">■</font>Cyan</td></tr>
+   <tr><th>010</th><td><font color="#FF0000">■</font>Red</td>      <th>110</th><td><font color="#FFFF00">■</font>Yellow</td></tr>
+   <tr><th>011</th><td><font color="#FF00FF">■</font>Magenta</td><th>111</th><td><font color="#CCCCCC">□</font>White</td></tr>
+  </tbody></table></td>
+ </tr>
+ <tr><th align="left">BC</th><td>Background color</td></tr>
+ </tbody></table>
+</td>
+</tr>
+
+<tr><td align="center">DC00h<br>：<br>DFFFh</td><td align="center">R/W</td>
+<td>PCG VRAM 2 (MZ-1500)
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#E0E0E0">Function</th><td colspan="2">PCGN[9:8]</td><td colspan="2"><br></td><td>PCGE</td><td colspan="3"><br></td></tr>
+ </tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+ <tbody><tr><th align="left">PCGN</th><td>PCG number</td><td>0～1023</td></tr>
+ <tr><th align="left">PCGE</th><td>PCG display control</td><td>0: Do not display PCG at this position<br>1: Display PCG at this position</td></tr>
+ </tbody></table>
+ <small><br></small>
+ Specify PCG number together with PCG VRAM 1
+</td>
+</tr>
+
+</tbody></table>
+
+<a name="DISPCODE"><h4>Display code table</h4></a>
+<table border="0" cellspacing="0" cellpadding="2">
+ <tbody><tr>
+  <th>Character set 0 (ATB=0)</th>
+  <th width="16"><br></th>
+  <th>Character set 1 (ATB=1)</th>
+ </tr>
+ <tr>
+  <td><img src="./dispcode0.gif" width="358" height="358"></td>
+  <td><br></td>
+  <td><img src="./dispcode1.gif" width="358" height="358"></td>
+ </tr>
+</tbody></table>
+
+<hr>
+
+<a name="MEMIO"><h3>Memory mapped I / O</h3></a>
+<table border="1" cellpadding="2">
+<tbody><tr><th>Address</th><th>R/W</th><th>Description</th></tr>
+
+<tr><td align="center">E000h</td><td align="center">W</td>
+<td>8255 Port A
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">R/W</th><td>W</td><td colspan="3"><br></td><td colspan="4">W</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td>556RST</td><td colspan="3"><br></td><td colspan="4">KEYSTROBE</td></tr>
+ </tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+ <tbody><tr><th align="left">556RST</th><td>Reset cursor blink timer</td><td>0: reset<br>1: do nothing</td></tr>
+ <tr><th align="left">KEYSTROBE</th><td colspan="2">Keyboard matrix strobe output</td></tr>
+ </tbody></table>
+</td>
+</tr>
+<tr><td align="center">E001h</td><td align="center">R</td><td>8255 Port B<br>Keyboard matrix data input
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>＼Strobe<br>Data＼</th><th>0</th><th width="32">1</th><th width="32">2</th><th width="32">3</th><th width="32">4</th><th width="32">5</th><th width="32">6</th><th width="32">7</th><th>8</th><th width="32">9</th></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D7</th><td>Kana</td> <td>Y</td><td>Q</td><td>I</td><td>A</td><td>1</td><td>*</td> <td>INST</td><td>BREAK</td><td>F1</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D6</th><td>GRAPH</td><td>Z</td><td>R</td><td>J</td><td>B</td><td>2</td><td>+</td> <td>DEL</td> <td>CTRL</td> <td>F2</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D5</th><td>=</td>    <td>@</td><td>S</td><td>K</td><td>C</td><td>3</td><td>-</td> <td>↑</td>  <td> </td>    <td>F3</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D4</th><td>English number</td> <td>(</td><td>T</td><td>L</td><td>D</td><td>4</td><td>SP</td><td>↓</td>  <td> </td>    <td>F4</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D3</th><td> </td>    <td>)</td><td>U</td><td>M</td><td>E</td><td>5</td><td>0</td> <td>→</td>  <td> </td>    <td>F5</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D2</th><td>;</td>    <td> </td><td>V</td><td>N</td><td>F</td><td>6</td><td>9</td> <td>←</td>  <td> </td>    <td> </td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D1</th><td>:</td>    <td> </td><td>W</td><td>O</td><td>G</td><td>7</td><td>,</td> <td>?</td>   <td> </td>    <td> </td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">D0</th><td>CR</td>   <td> </td><td>X</td><td>P</td><td>H</td><td>8</td><td>.</td> <td>/</td>   <td>SHIFT</td><td> </td></tr>
+ </tbody></table>
+</td></tr>
+<tr><td align="center">E002h</td><td align="center">R/W</td>
+<td>8255 Port C
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">R/W</th><td>R</td><td>R</td><td>R</td><td>R</td><td>W</td><td>W</td><td>W</td><td>W</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td><span class="ul">VBLK</span></td><td>556OUT</td><td>RDATA</td><td>MOTOR</td><td>M-ON</td><td>INTMSK</td><td>WDATA</td><td>SOUNDMSK</td>
+ </tr></tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr><th align="left"><span class="ul">VBLK</span></th><td colspan="2">Vertical blanking signal</td></tr>
+  <tr><th align="left">556OUT</th><td colspan="2">Cursor blink timer</td></tr>
+  <tr><th align="left">RDATA</th><td colspan="2">Input from data recorder</td></tr>
+  <tr><th align="left">MOTOR</th><td>Data recorder motor status</td><td>0: OFF<br>1: ON</td></tr>
+  <tr><th align="left">M-ON</th><td>Data recorder motor ON/OFF</td><td>Trigger operation at rising edge 0 → 1</td></tr>
+  <tr><th align="left">INTMSK</th><td>Mask the interrupt from 8253 Ch.2</td><td>0: Interrupt disabled<br>1: Enable interrupt</td></tr>
+  <tr><th align="left">WDATA</th><td colspan="2">Output to data recorder</td></tr>
+  <tr><th align="left">SOUNDMSK<br>(MZ-1500)</th><td>Mask the sound output of 8253 Ch. 0</td><td>0: Mask<br>1: Do not mask</td></tr>
+ </tbody></table>
+</td>
+</tr>
+<tr><td align="center">E003h</td><td align="center">W</td>
+<td>8255 Control
+<ul>
+ <li>Bit set/reset
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr><th bgcolor="#FFFFCC">Signal</th><td>0</td><td colspan="3"><br></td><td colspan="3">Port C<br>Bit number</td><td>0: Reset<br>1: Set</td>
+ </tr></tbody></table>
+ </li><br>
+ <li>Mode set<br>* In MZ-700/1500, it is set to 8Ah
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td>1</td><td colspan="2">ModeA</td><td>PortA</td><td>PortCH</td><td>ModeB</td><td>PortB</td><td>PortCL</td>
+ </tr></tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr><th>ModeA</th><td>Port A Action mode</td><td>1x: Mode 2<br>01: Mode 1<br>00: Mode 0</td></tr>
+  <tr><th>ModeB</th><td>Port B Action mode</td><td>1: Mode 1<br>0: Mode 0</td></tr>
+  <tr><th>PortA</th><td>Port A Input and output</td><td>0: Output<br>1: Input</td></tr>
+  <tr><th>PortB</th><td>Port B Input and output</td><td>0: Output<br>1: Input</td></tr>
+  <tr><th>PortCH</th><td>Port C Upper nibble input/output</td><td>0: Output<br>1: Input</td></tr>
+  <tr><th>PortCL</th><td>Port C Upper nibble input/output</td><td>0: Output<br>1: Input</td></tr>
+ </tbody></table>
+ </li>
+</ul>
+</td>
+</tr>
+<tr><td align="center">E004h</td><td align="center">R/W</td><td>8253 Ch.0 Counter read/write</td></tr>
+<tr><td align="center">E005h</td><td align="center">R/W</td><td>8253 Ch.1 Counter read/write</td></tr>
+<tr><td align="center">E006h</td><td align="center">R/W</td><td>8253 Ch.2 Counter read/write</td></tr>
+<tr><td align="center">E007h</td><td align="center">W</td><td>8253 Control
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td>SC1</td><td>SC0</td><td>RL1</td><td>RL0</td><td>M2</td><td>M1</td><td>M0</td><td>BCD</td>
+ </tr></tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr><th>SC1, SC0</th><td>Counter selection</td><td>00: Ch.0<br>01: Ch.1<br>10: Ch.2<br>11: Invalid</td></tr>
+  <tr><th>RL1, RL0</th><td>Read/Load</td><td>00: Counter latch operation<br>01: Access the low byte of the counter<br>10: Access the high byte of the counter<br>11: Consecutive accesses in order of lower byte of counter → upper byte</td></tr>
+  <tr><th>M2,M1,M0</th><td>Mode selection</td><td>000: Mode 0 (Interrupt on Terminal Count)<br>
+                                              001: Mode 1 (Programmable One-Shot)<br>
+                                              x10: Mode 2 (Rate Generator)<br>
+                                              x11: Mode 3 (Square Wave Generator)<br>
+                                              100: Mode 4 (Software Triggered Strobe)<br>
+                                              101: Mode 5 (Hardware Triggered Strobe)<br></td></tr>
+  <tr><th>BCD</th><td>Count mode</td><td>0: 16-bit binary<br>1: 4 digit BCD</td></tr>
+ </tbody></table>
+</td></tr>
+<tr><td align="center" rowspan="2">E008h</td><td align="center">R</td><td>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td><span class="ul">HBLK</span></td><td colspan="2"><br></td><td>JB2</td><td>JB1</td><td>JA2</td><td>JA1</td><td>TEMPO</td>
+ </tr></tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr><th align="left"><span class="ul">HBLK</span></th><td>Horizontal blanking signal</td></tr>
+  <tr><th align="left">JA2,JA1</th><td>Joystick A Input</td></tr>
+  <tr><th align="left">JB2,JB1</th><td>Joystick B Input</td></tr>
+  <tr><th align="left">TEMPO</th><td>Tempo timer Input</td></tr>
+ </tbody></table>
+</td></tr>
+<tr><td align="center">W</td><td>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td colspan="7"><br></td><td>GATE</td></tr>
+ </tbody></table>
+ GATE 8253 Ch.0 GATE input
+</td></tr>
+
+</tbody></table>
+
+<hr>
+
+<a name="MEMMAP"><h3>Memory map</h3></a>
+<img src="./memmap1.png" width="400" height="256">
+<p>PCG bank is only MZ-1500.<br>
+The expansion ROM area is undefined in MZ-700 (empty area; used by ROMs on boards such as MZ-1R12, MZ-1E05, MZ-1E14, etc.), and the second monitor ROM 9Z-502M is placed in MZ-1500.<br>
+In the memory mapped I/O area, only E000h-E00Fh is actually reserved and E000h-E00Bh is used. E00Ch-E00Fh is not defined. E010h-E7FFh is undefined in MZ-700, but MZ-1500 can read FFh written in ROM.<br>
+F000h-FFFFh of PCG bank is not defined. When PCG bank is switched to CGROM, the actual contents of CGROM are in the range of D000h-DFFFh, and the range of E000h-EFFFh is the mirror image.
+
+</p><hr>
+
+<a name="BANK"><h3>Memory bank switching</h3></a>
+<img src="./memmap2.png" width="640" height="640">
+
+<table border="1" cellpadding="2">
+<tbody><tr><th rowspan="2">Address</th><th rowspan="2">R/W</th><th colspan="2">Description</th></tr>
+<tr><th>0000h-0FFFh</th><th>D000h-FFFFh</th></tr>
+
+<tr><td align="center">E0h</td><td align="center" rowspan="7">W</td><td>DRAM</td><td>---</td></tr>
+<tr><td align="center">E1h</td><td>---</td><td>DRAM</td></tr>
+<tr><td align="center">E2h</td><td>MONITOR ROM</td><td>---</td></tr>
+<tr><td align="center">E3h</td><td>---</td><td>VRAM/KEY/TIMER</td></tr>
+<tr><td align="center">E4h</td><td>MONITOR ROM</td><td>VRAM/KEY/TIMER</td></tr>
+<tr><td align="center">E5h</td><td>---</td><td>MZ-1500: PCG bank switching
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#E0E0E0">Signal</th><td colspan="6"><br></td><td colspan="2">BANK</td></tr>
+ </tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr bgcolor="#000000"><th><font color="#CCCCCC">BANK</font></th><th><font color="#CCCCCC">Description</font></th></tr>
+  <tr><td align="center">00</td><td>CGROM</td></tr>
+  <tr><td align="center">01</td><td>PCG Blue plane</td></tr>
+  <tr><td align="center">10</td><td>PCG Red plane</td></tr>
+  <tr><td align="center">11</td><td>PCG Green plane</td></tr>
+ </tbody></table>
+        </td></tr>
+<tr><td align="center">E6h</td><td>---</td><td>MZ-1500: Close PCG Bank</td></tr>
+
+</tbody></table>
+* Although E1h and E3h do not close the PCG bank, switching between the DRAM bank and VRAM / KEY / TIMER bank is performed on the back, and is reflected when the PCG bank is closed at E6h. For example, when D000h-FFFFh is in the DRAM bank state and E5h → E3h → E6h OUT, the VRAM / KEY / TIMER bank state is established.<br>
+E4h closes the PCG bank.
+
+<hr>
+
+<a name="PRIORITY"><h3>Text/PCG priority</h3></a>
+
+<table border="1" cellpadding="2">
+<tbody><tr><th>Address</th><th>R/W</th><th>Description</th></tr>
+
+<tr><td align="center">F0h</td><td align="center">W</td>
+<td>Priority
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#E0E0E0">Signal</th><td colspan="6"><br></td><td>Priority</td><td>PCG display</td>
+  </tr>
+ </tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr><th>Priority</th><td>0 : Text Letter color > PCG > Text Background Color<br>1 : PCG > text</td></tr>
+  <tr><th>PCG display</th><td>0 : Do not display PCG<br>1 : Display PCG</td></tr>
+ </tbody></table>
+</td>
+</tr>
+
+</tbody></table>
+
+<hr>
+
+<a name="PALETTE"><h3>Palette</h3></a>
+
+<table border="1" cellpadding="2">
+<tbody><tr><th>Address</th><th>R/W</font></th><th>Description</th></tr>
+
+<tr><td align="center">F1h</td><td align="center">W</td>
+<td>Palette setting
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#E0E0E0">Signal</th><td><br></td><td colspan="3">Palette number</td><td><br></td><td colspan="3">Color code</td></tr>
+ </tbody></table>
+</td>
+</tr>
+
+</tbody></table>
+
+<hr>
+
+<a name="PCG-700"><h3>PCG-700 (HAL laboratory)</h3></a>
+
+<table border="1" cellpadding="2">
+<tbody><tr><th>Address</th><th>R/W</th><th>Description</th></tr>
+
+<tr><td align="center">E010h</td><td align="center">W</td>
+<td>Pattern data written to PCG-RAM
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td colspan="8">Pattern data</td></tr>
+ </tbody></table>
+</td>
+</tr>
+<tr><td align="center">E011h</td><td align="center">W</td><td>PCG-RAM address lower 8 bits
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td colspan="8">ADDR[7:0]</td></tr>
+ </tbody></table>
+</td></tr>
+<tr><td align="center">E012h</td><td align="center">W</td>
+<td>PCG-RAM address upper 3 bits / PCG control
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+  <tr align="center"><th bgcolor="#FFFFCC">Signal</th><td colspan="2"><br></td><td>COPY</td><td>WE</td><td>SSW</td><td colspan="3">ADDR[10:8]</td>
+ </tr></tbody></table>
+ <small><br></small>
+ <table border="1" cellspacing="0" cellpadding="2">
+  <tbody><tr><th align="left">COPY</th><td>Copy from CGROM</td><td>0: When writing by WE, write the pattern data written in E010h<br>1: Write pattern data from CGROM when writing with WE</td></tr>
+  <tr><th align="left">WE</th><td>Write operation</td><td>Write data to PCG-RAM by toggling 0 → 1 → 0</td></tr>
+  <tr><th align="left">SSW</th><td>PCG selection</td><td>0: Use PCG<br>1: Do not use PCG</td></tr>
+  <tr><th align="left">ADDR</th><td>Write address</td><td>000h-7FFh</td></tr>
+ </tbody></table>
+</td>
+</tr>
+
+</tbody></table>
+
+<p>The display code 80h-FFh range (128 × 2 = 256 characters combined with switching by Bit 7 of Attribute VRAM) is displayed on PCG.<br>
+Be aware that even if the bank from D000h to FFFFh is in the DRAM state, it responds to writing to E010h to E012h (do not leave SSW 1).
+
+</p><hr>
+
+
+</body>
+</html>

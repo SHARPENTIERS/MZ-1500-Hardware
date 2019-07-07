@@ -27,7 +27,8 @@ td {
 }
 
 /* Cells in even rows (2,4,6...) are one color */        
-tr:nth-child(even) td { background: #F1F1F1; }   
+/* tr:nth-child(even) td { background: #F1F1F1; } */   
+tr:nth-child(even) td { background: #FEFEFE; }   
 
 /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */        
 tr:nth-child(odd) td { background: #FEFEFE; }  
@@ -42,7 +43,7 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 <tbody><tr><th>Address</th><th>R/W</th><th>Description</th></tr>
 
 <tr><td align="center">D000h<br>：<br>D3FFh</td><td align="center">R/W</td>
-<td>Text VRAM<br><img src="./vramarray.png" width="256" height="120">
+<td>Text VRAM<br><img src="./vramarray1.png" width="256" height="120">
  <table border="1" cellspacing="0" cellpadding="2">
   <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
   <tr align="center"><th bgcolor="#FFFFCC">Function</th><td colspan="8">Display code</td></tr>
@@ -53,7 +54,7 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 </tr>
 
 <tr><td align="center">D400h<br>：<br>D7FFh</td><td align="center">R/W</td>
-<td>PCG VRAM 1 (MZ-1500)
+<td>PCG VRAM 1 (MZ-1500)<br><img src="./vramarray2.png" width="256" height="120">
  <table border="1" cellspacing="0" cellpadding="2">
   <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
   <tr align="center"><th bgcolor="#E0E0E0">Function</th><td colspan="8">PCGN[7:0]</td></tr>
@@ -64,7 +65,7 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 </tr>
 
 <tr><td align="center">D800h<br>：<br>DBFFh</td><td align="center">R/W</td>
-<td>Attribute VRAM
+<td>Attribute VRAM<br><img src="./vramarray3.png" width="256" height="120">
  <table border="1" cellspacing="0" cellpadding="2">
   <tbody><tr align="center" bgcolor="#FFFFCC"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
   <tr align="center"><th bgcolor="#FFFFCC">Function</th><td>ATB</td><td colspan="3">FC</td><td><br></td><td colspan="3">BC</td></tr>
@@ -74,11 +75,15 @@ tr:nth-child(odd) td { background: #FEFEFE; }
  <tbody><tr><th align="left">ATB</th><td>Character set switching</td><td>0: Set 0 (English capital letter / Katakana)<br>1: Set 1 (English lowercase letters / Hiragana)</td></tr>
  <tr><th align="left">FC</th><td>Foreground color</td>
   <td rowspan="2"><table border="1" cellspacing="0" cellpadding="2">
-   <tbody><tr bgcolor="#FFFFCC"><th>FC,BC</th><th>Color</th><th>FC,BC</th><th>Color</th></tr>
-   <tr><th>000</th><td><font color="#000000">■</font>black</td>      <th>100</th><td><font color="#00FF00">■</font>Green</td></tr>
-   <tr><th>001</th><td><font color="#0000FF">■</font>Blue</td>      <th>101</th><td><font color="#00FFFF">■</font>Cyan</td></tr>
-   <tr><th>010</th><td><font color="#FF0000">■</font>Red</td>      <th>110</th><td><font color="#FFFF00">■</font>Yellow</td></tr>
-   <tr><th>011</th><td><font color="#FF00FF">■</font>Magenta</td><th>111</th><td><font color="#CCCCCC">□</font>White</td></tr>
+   <tbody><tr bgcolor="#FFFFCC"><th>FC,BC</th><th>Palette number</th>Color code</tr>
+   <tr><th>000</th><td>Palette #0 (defaulted to <font color="#000000">■</font>Black)</td></tr>
+   <tr><th>001</th><td>Palette #1 (defaulted to <font color="#0000FF">■</font>Blue)</td></tr>
+   <tr><th>010</th><td>Palette #2 (defaulted to <font color="#FF0000">■</font>Red)</td></tr>
+   <tr><th>011</th><td>Palette #3 (defaulted to <font color="#FF00FF">■</font>Magenta)</td></tr>
+   <tr><th>100</th><td>Palette #4 (defaulted to <font color="#00FF00">■</font>Green)</td></tr>
+   <tr><th>101</th><td>Palette #5 (defaulted to <font color="#00FFFF">■</font>Cyan)</td></tr>
+   <tr><th>110</th><td>Palette #6 (defaulted to <font color="#FFFF00">■</font>Yellow)</td></tr>
+   <tr><th>111</th><td>Palette #7 (defaulted to <font color="#CCCCCC">□</font>White)</td></tr>
   </tbody></table></td>
  </tr>
  <tr><th align="left">BC</th><td>Background color</td></tr>
@@ -87,7 +92,7 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 </tr>
 
 <tr><td align="center">DC00h<br>：<br>DFFFh</td><td align="center">R/W</td>
-<td>PCG VRAM 2 (MZ-1500)
+<td>PCG VRAM 2 (MZ-1500)<br><img src="./vramarray4.png" width="256" height="120">
  <table border="1" cellspacing="0" cellpadding="2">
   <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
   <tr align="center"><th bgcolor="#E0E0E0">Function</th><td colspan="2">PCGN[9:8]</td><td colspan="2"><br></td><td>PCGE</td><td colspan="3"><br></td></tr>
@@ -274,15 +279,16 @@ F000h-FFFFh of PCG bank is not defined. When PCG bank is switched to CGROM, the 
  <table border="1" cellspacing="0" cellpadding="2">
   <tbody><tr bgcolor="#000000"><th><font color="#CCCCCC">BANK</font></th><th><font color="#CCCCCC">Description</font></th></tr>
   <tr><td align="center">00</td><td>CGROM</td></tr>
-  <tr><td align="center">01</td><td>PCG Blue plane</td></tr>
-  <tr><td align="center">10</td><td>PCG Red plane</td></tr>
-  <tr><td align="center">11</td><td>PCG Green plane</td></tr>
+  <tr><td align="center">01</td><td>PCG "Blue" plane (bit 0 of palette number)</td></tr>
+  <tr><td align="center">10</td><td>PCG "Red" plane (bit 1 of palette number)</td></tr>
+  <tr><td align="center">11</td><td>PCG "Green" plane (bit 2 of palette number)</td></tr>
  </tbody></table>
         </td></tr>
 <tr><td align="center">E6h</td><td>---</td><td>MZ-1500: Close PCG Bank</td></tr>
 
 </tbody></table>
-* Although E1h and E3h do not close the PCG bank, switching between the DRAM bank and VRAM / KEY / TIMER bank is performed on the back, and is reflected when the PCG bank is closed at E6h. For example, when D000h-FFFFh is in the DRAM bank state and E5h → E3h → E6h OUT, the VRAM / KEY / TIMER bank state is established.<br>
+While planes are called blue, red and green, each plane encodes a bit among the three bits of a palette number. Palette #0 is transparency.
+Although E1h and E3h do not close the PCG bank, switching between the DRAM bank and VRAM / KEY / TIMER bank is performed on the back, and is reflected when the PCG bank is closed at E6h. For example, when D000h-FFFFh is in the DRAM bank state and E5h → E3h → E6h OUT, the VRAM / KEY / TIMER bank state is established.<br>
 E4h closes the PCG bank.
 
 <hr>
@@ -321,11 +327,19 @@ E4h closes the PCG bank.
  <table border="1" cellspacing="0" cellpadding="2">
   <tbody><tr align="center" bgcolor="#E0E0E0"><th>Bit</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
   <tr align="center"><th bgcolor="#E0E0E0">Signal</th><td><br></td><td colspan="3">Palette number</td><td><br></td><td colspan="3">Color code</td></tr>
+ </tbody></table>Color code
+ <table border="1" cellspacing="0" cellpadding="2">
+   <tbody><tr bgcolor="#FFFFCC"><th>Code</th><th>Color</th><th>Code</th><th>Color</th></tr>
+   <tr><th>000</th><td><font color="#000000">■</font>Black</td>      <th>100</th><td><font color="#00FF00">■</font>Green</td></tr>
+   <tr><th>001</th><td><font color="#0000FF">■</font>Blue</td>      <th>101</th><td><font color="#00FFFF">■</font>Cyan</td></tr>
+   <tr><th>010</th><td><font color="#FF0000">■</font>Red</td>      <th>110</th><td><font color="#FFFF00">■</font>Yellow</td></tr>
+   <tr><th>011</th><td><font color="#FF00FF">■</font>Magenta</td><th>111</th><td><font color="#CCCCCC">□</font>White</td></tr>
  </tbody></table>
 </td>
 </tr>
 
 </tbody></table>
+ Palette #0 means transparency when used for drawing PCG against text.
 
 <hr>
 

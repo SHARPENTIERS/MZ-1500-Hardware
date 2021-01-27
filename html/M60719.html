@@ -1,0 +1,99 @@
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>M60719</title>
+<style type="text/css">
+table {  
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 640px; 
+    border-collapse: 
+    collapse; border-spacing: 0; 
+}
+
+td, th {  
+    border: 1px solid ; /* No more visible border */
+    height: 30px; 
+    transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+th {  
+    background: #DFDFDF;  /* Darken header a bit */
+    font-weight: bold;
+}
+
+td {  
+    background: #FAFAFA;
+    text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */        
+/* tr:nth-child(even) td { background: #F1F1F1; } */   
+tr:nth-child(even) td { background: #FEFEFE; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */        
+tr:nth-child(odd) td { background: #FEFEFE; }  
+
+/* tr td:hover { background: #666; color: #FFF; } */  
+/* Hover cell effect! */
+</style>
+<body>
+
+<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Signal terminal of M60719</font></font></h3>
+
+<table border="1">
+<tbody><tr bgcolor="#FFCC33"><th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pin</font></font></th><th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></th><th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I/O</font></font></th><th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Note</font></font></th></tr>
+
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">A0-A15</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1<br>&vellip;<br>16</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 address bus</font></font></td></tr>
+
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Φ</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">17</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">14.31818 MHz (NTSC) / 17.734475 MHz (PAL)</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">φ</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">18</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 clock</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/CSE</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">19</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Memory mapped I / O select </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+L when the VRAM / I/O bank is selected and A0 to A15 are $E000 to $E00F L </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+(Not affected by * /MREQ)
+</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CL</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Unspecified Connect to GND</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GATE</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">21</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Unspecified Connect to GND</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/CS0</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">22</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IPL ROM select When the </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+IPL ROM bank is selected and A0 to A15 are $0000 to $0FFF and /RD = L and /MREQ = L
+</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+ 5V</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">23</font></font></td><td></td><td></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/RAS</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">24</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DRAM control </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+Asserted at DRAM access. </font><font style="vertical-align: inherit;">/MREQ is out as it is</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/RFSH</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 / RFSH</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">φ0</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">26</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.579545 MHz (NTSC) / 3.546875 MHz (PAL)</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/MREQ</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">27</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 / MREQ</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/IORQ</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">28</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 / IORQ</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/RD</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">29</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 / RD</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/WR</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">30</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 / WR</font></font></td></tr>
+
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/RESET</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">31</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">The </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+CRTC side </font><font style="vertical-align: inherit;">that resets bank selection information </font><font style="vertical-align: inherit;">is probably not affected</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SEL</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">32</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DRAM control </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+Asserted for memory access even if not for DRAM access</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/VBLK</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">33</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vertical blanking signal</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/HBLK</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">34</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Horizontal blanking signal</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/WA</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">35</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Z80 / WAIT</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">COLR</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">36</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.579545 MHz</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/PRC</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">37</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+L when </font><font style="vertical-align: inherit;">Printer port select </font><font style="vertical-align: inherit;">A0-A8 is $FE to $FF and /IORQ = L</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Q1-Q3</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">38<br>&vellip;<br>40</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CGROM raster count</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N/P</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">41</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NTSC / PAL (H: NTSC)</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">BLNK</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">42</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15.7 kHz (to 8253 CLK1)</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/HSY</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">43</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Horizontal sync signal</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ABC</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">44</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">In MZ-700 / 1500, when unused </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+P2, P1 and P0 are all H, the pulse with the same timing as the next /LOAD is output</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/LOAD</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">45</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">The timing to latch pattern data output from CGROM </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+is also used as the input clock for channel 0 of </font><font style="vertical-align: inherit;">output </font><font style="vertical-align: inherit;">8253</font></font></td></tr>
+
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">P0-P6</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">46<br>&vellip;<br>52</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VRAM address</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GND</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">53</font></font></td><td></td><td></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">P7-P10</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">54<br>&vellip;<br>57</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VRAM address</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S157</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">58</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">P0-P10 indicating whether outputs an address from either the Z80 / CRTC </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+H: CRTC / L: Z80 </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+during a memory access cycle to VRAM, becomes Low at the fall of φ in T2 (or last Tw) , High at /MREQ rising
+</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/SYN</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">59</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vertical sync signal</font></font></td></tr>
+<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">/CLK</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">60</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">O</font></font></td><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pixel clock 7.15909 MHz</font></font></td></tr>
+
+</tbody></table>
+
+</body></html>
